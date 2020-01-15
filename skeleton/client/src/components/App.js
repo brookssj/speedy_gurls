@@ -1,9 +1,15 @@
 import React, { Component } from "react";
+import NavBar from "./modules/NavBar.js";
 import { Router } from "@reach/router";
+import Feed from "./pages/Feed.js";
 import NotFound from "./pages/NotFound.js";
-import Skeleton from "./pages/Skeleton.js";
+import Profile from "./pages/Profile.js";
+import Skeleton from "./pages/Skeleton.js"
+
 
 import "../utilities.css";
+import "./App.css";
+
 
 import { socket } from "../client-socket.js";
 
@@ -47,15 +53,18 @@ class App extends Component {
   render() {
     return (
       <>
-        <Router>
-          <Skeleton
-            path="/"
+        <NavBar
             handleLogin={this.handleLogin}
             handleLogout={this.handleLogout}
             userId={this.state.userId}
           />
-          <NotFound default />
-        </Router>
+        <div className="App-container">
+          <Router>
+            <Skeleton path="/"/>
+            <Profile path="/profile/:userId" />
+            <NotFound default />
+          </Router>
+        </div>
       </>
     );
   }
