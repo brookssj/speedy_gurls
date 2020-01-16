@@ -11,6 +11,7 @@ const express = require("express");
 
 // import models so we can interact with the database
 const User = require("./models/user");
+const Post = require("./models/post");
 
 // import authentication library
 const auth = require("./auth");
@@ -46,6 +47,11 @@ router.get("/user", (req, res) => {
   User.findById(req.query.userid).then((user) => {
     res.send(user);
   });
+});
+
+router.get("/posts", (req, res) => {
+  // empty selector means get all documents
+  Post.find({}).then((posts) => res.send(posts));
 });
 
 // anything else falls to this "not found" case
