@@ -54,4 +54,15 @@
     font-size: 24px;
     margin: var(--m) var(--s);
   }
+
+  .Profile-p {
+    font-size:24px;
+    text-align: center;
+  }
+
+  .Profile-list {
+    flex-direction: column;
+    text-align: center;
+
+  }
   

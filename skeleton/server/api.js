@@ -42,11 +42,27 @@ router.post("/initsocket", (req, res) => {
 // | write your API methods below!|
 // |------------------------------|
 
+
+
 router.get("/user", (req, res) => {
   User.findById(req.query.userid).then((user) => {
     res.send(user);
   });
 });
+
+
+
+router.post("/information", auth.ensureLoggedIn, (req, res) => {
+  const info = new information({
+    creator_id: req.user._id,
+    name: req.user.name,
+    email: req.user.email,
+    location: req.user.location,
+    
+  });
+  Info.save().then((info)=> res.send(info));
+});
+
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
