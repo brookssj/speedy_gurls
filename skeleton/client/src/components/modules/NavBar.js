@@ -18,11 +18,7 @@ class NavBar extends Component {
   render() {
     return (
       <nav className="NavBar-container">
-<<<<<<< HEAD
         <div className="NavBar-title u-inlineBlock">memory palace</div>
-=======
-        <div className="NavBar-title u-inlineBlock">shop n swap</div>
->>>>>>> 65cdfe9a8791daa1360f6fdeb333bf7b50f4c4ce
         <div className="NavBar-linkContainer u-inlineBlock">
           <Link to="/search" className="NavBar-link">
             search
