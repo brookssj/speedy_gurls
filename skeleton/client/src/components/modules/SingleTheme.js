@@ -50,8 +50,11 @@ class SingleTheme extends Component {
     }
     return (
       <>
-        {<NewMemory addNewMemory={this.addNewMemory} />}
-        {memoriesList}
+        {/* {<NewMemory addNewMemory={this.addNewMemory} />}
+        {memoriesList} */}
+        <div>
+            {this.props.content}
+        </div>
       </>
     );
   }

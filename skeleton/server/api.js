@@ -51,17 +51,44 @@ router.get("/user", (req, res) => {
 });
 
 
-
-router.post("/information", auth.ensureLoggedIn, (req, res) => {
-  const info = new information({
-    creator_id: req.user._id,
-    name: req.user.name,
-    email: req.user.email,
-    location: req.user.location,
-    
+router.get("/memory", (req, res) => {
+  Memory.find({ parent: req.query.parent }).then((memories) => {
+    res.send(memories);
   });
-  Info.save().then((info)=> res.send(info));
 });
+
+router.post("/memory", auth.ensureLoggedIn, (req, res) => {
+  const newMemory = new Memory({
+    creator_id: req.user._id,
+    creator_name: req.user.name,
+    parent: req.body.parent,
+    content: req.body.content,
+  });
+
+  newMemory.save().then((memory) => res.send(memory));
+});
+
+router.post("/theme", auth.ensureLoggedIn, (req, res) => {
+  const newTheme = new Theme({
+    creator_id: req.user._id,
+    creator_name: req.user.name,
+    content: req.body.content,
+  });
+
+  newStory.save().then((theme) => res.send(theme));
+});
+
+
+// router.post("/information", auth.ensureLoggedIn, (req, res) => {
+//   const info = new information({
+//     creator_id: req.user._id,
+//     name: req.user.name,
+//     email: req.user.email,
+//     location: req.user.location,
+    
+//   });
+//   Info.save().then((info)=> res.send(info));
+// });
 
 
 // anything else falls to this "not found" case

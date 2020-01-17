@@ -59,6 +59,7 @@ class App extends Component {
         <div className="App-container">
           <Router>
             <Skeleton path="/"/>
+            <Collection path="/Collection" userId={this.state.userId} />
             <NotFound default />
           </Router>
         </div>

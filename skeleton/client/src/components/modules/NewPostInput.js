@@ -7,9 +7,10 @@ import { post } from "../../utilities";
  * New Post is a parent component for all input components
  *
  * Proptypes
- * @param {string} defaultText is the placeholder text
- * @param {string} memoryId optional prop, used for comments
- * @param {({memoryId, value}) => void} onSubmit: (function) triggered when this post is submitted, takes {memoryId, value} as parameters
+ * @param {string} defaultTitleText is the placeholder text
+ * @param {string} defaultDescription is the placeholder text
+ * @param {string} themeId 
+ * @param {({themeId, value}) => void} onSubmit: (function) triggered when this post is submitted, takes {themeId, value} as parameters
  */
 class NewPostInput extends Component {
   constructor(props) {
@@ -44,9 +45,11 @@ class NewPostInput extends Component {
   // called when the user hits "Submit" for a new post
   handleSubmit = (event) => {
     event.preventDefault();
-    this.props.onSubmit && this.props.onSubmit(this.state.value);
+    this.props.onSubmit && this.props.onSubmit(this.state.title, this.state.image, this.state.description);
     this.setState({
-      value: "",
+        title: "",
+        image: "",
+        description: ""
     });
   };
 
@@ -116,15 +119,17 @@ class NewComment extends Component {
  * New Memory is a New Post component for memories
  *
  * Proptypes
- * @param {string} defaultText is the placeholder text
+ * @param {string} defaultTitleText is the placeholder text
+ * @param {string} defaultDescription is the placeholder text
+ * @param {string} themeId to add memory to
  */
 class NewMemory extends Component {
-  addMemory = (value) => {
-    const body = { 
+  addMemory = (title, image, description) => {
+    const body = {parent: this.props.themeId, 
         content: {
-            title: 
-            image:
-            description:
+            title: title,
+            image: image,
+            description: description
     } };
     post("/api/memory", body).then((memory) => {
       // display this memory on the screen
@@ -133,7 +138,7 @@ class NewMemory extends Component {
   };
 
   render() {
-    return <NewPostInput defaultText="New Memory" onSubmit={this.addMemory} />;
+    return <NewPostInput defaultTitleText="New Title" defaultDescription="New Memory" onSubmit={this.addMemory} />;
   }
 }
 
@@ -154,4 +159,4 @@ class NewMessage extends Component {
   }
 }
 
-export { NewComment, NewMemory, NewMessage };
+export {NewMemory};
