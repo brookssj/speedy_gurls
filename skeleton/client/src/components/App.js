@@ -44,7 +44,7 @@ class App extends Component {
     const userToken = res.tokenObj.id_token;
     post("/api/login", { token: userToken }).then((user) => {
       this.setState({ userId: user._id });
-      post("/api/initsocket", { socketid: socket.id });
+      post("/api/initsocket", { socketid: socket.id }).then(() => navigate(`/Collection/${this.state.userId}`));
     });
   };
 
