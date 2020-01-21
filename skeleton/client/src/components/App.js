@@ -54,15 +54,8 @@ class App extends Component {
     navigate("/")
   };
 
-  // handleTheme= () => {
-  //   get("/api/whattheme").then((theme) => {
-  //    this.setState({themeId: theme._id});
-  //   })
-  // }
-
    handleTheme= (themeId) => {
       this.setState({themeId: themeId});
-      //navigate(`/theme/${themeId}`);
    }
 
   render() {
@@ -77,8 +70,6 @@ class App extends Component {
           <Router>
             <Skeleton path="/"/>
             <Collection path={`/Collection/${this.state.userId}`} userId={this.state.userId} handleTheme = {this.handleTheme} />
-            {/* <Theme path ="/theme/5e222ba2c4905203f1af6b0c"/> */}
-            {/* <Theme path ={`/theme/${this.state.themeId}`}/> */}
             <Theme path="/theme/:themeId" themeId={this.state.themeId}/>
             <NotFound default />
           </Router>

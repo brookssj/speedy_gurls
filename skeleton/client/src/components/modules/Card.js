@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import SingleTheme from "./SingleTheme.js";
-import { get, post } from "../../utilities";
-import { Link, navigate } from "@reach/router";
+import { get } from "../../utilities";
+import { Link } from "@reach/router";
 
 import "./Card.css";
 
@@ -45,18 +45,11 @@ class Card extends Component {
             {this.props.content}
         </button> */}
 
-        {/* if then statement? */}
-        <SingleTheme
+        {/* <SingleTheme
           _id={this.props._id}
           creator_name={this.props.creator_name}
           creator_id={this.props.creator_id}
           content={this.props.content}
-        />
-        {/* <CommentsBlock
-          story={this.props}
-          comments={this.state.comments}
-          addNewComment={this.addNewComment}
-          userId={this.props.userId}
         /> */}
       </div>
     );

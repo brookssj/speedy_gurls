@@ -84,16 +84,7 @@ router.get("/themes", (req, res) => {
   // empty selector means get all documents
   Theme.find({creator_id: req.user._id}).then((themes) => res.send(themes));
 });
-
-// router.get("/whattheme", (req, res) => {
-//   console.log(req.query._id)
-//   Theme.findById(req.query._id).then((theme) =>{
-//     console.log(theme)
-//     res.send(theme)
-//   })
-// })
  
-
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {
   console.log(`API route not found: ${req.method} ${req.url}`);

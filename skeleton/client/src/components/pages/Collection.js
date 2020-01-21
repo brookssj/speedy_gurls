@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import SingleTheme from "../modules/SingleTheme";
 import { NewTheme } from "../modules/NewThemeInput.js";
 import Card from "../modules/Card.js"
 

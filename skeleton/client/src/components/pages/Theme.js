@@ -2,10 +2,9 @@ import React, { Component } from "react";
 import { NewMemory } from "../modules/NewPostInput.js";
 
 
-import { get, post } from "../../utilities";
+import { get } from "../../utilities";
 import SingleMemory from "../modules/SingleMemory.js";
 
-//somehow get theme id?? 
 
 class Theme extends Component {
   constructor(props) {
