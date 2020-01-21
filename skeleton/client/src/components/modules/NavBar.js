@@ -24,8 +24,8 @@ class NavBar extends Component {
             search
           </Link>
           {this.props.userId && (
-            <Link to={`/profile/${this.props.userId}`} className="NavBar-link">
-              Profile
+            <Link to={`/Collection/${this.props.userId}`} className="NavBar-link">
+              Collection
             </Link>
           )}
           {this.props.userId ? (

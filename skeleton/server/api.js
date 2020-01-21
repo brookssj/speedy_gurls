@@ -11,6 +11,8 @@ const express = require("express");
 
 // import models so we can interact with the database
 const User = require("./models/user");
+const Theme = require("./models/theme");
+const Memory = require("./models/memory");
 
 // import authentication library
 const auth = require("./auth");
@@ -52,7 +54,7 @@ router.get("/user", (req, res) => {
 
 
 router.get("/memory", (req, res) => {
-  Memory.find({ parent: req.query.parent }).then((memories) => {
+  Memory.find({ parent: req.query.parent, creator_id: req.user._id }).then((memories) => {
     res.send(memories);
   });
 });
@@ -75,21 +77,22 @@ router.post("/theme", auth.ensureLoggedIn, (req, res) => {
     content: req.body.content,
   });
 
-  newStory.save().then((theme) => res.send(theme));
+  newTheme.save().then((theme) => res.send(theme));
 });
 
+router.get("/themes", (req, res) => {
+  // empty selector means get all documents
+  Theme.find({creator_id: req.user._id}).then((themes) => res.send(themes));
+});
 
-// router.post("/information", auth.ensureLoggedIn, (req, res) => {
-//   const info = new information({
-//     creator_id: req.user._id,
-//     name: req.user.name,
-//     email: req.user.email,
-//     location: req.user.location,
-    
-//   });
-//   Info.save().then((info)=> res.send(info));
-// });
-
+// router.get("/whattheme", (req, res) => {
+//   console.log(req.query._id)
+//   Theme.findById(req.query._id).then((theme) =>{
+//     console.log(theme)
+//     res.send(theme)
+//   })
+// })
+ 
 
 // anything else falls to this "not found" case
 router.all("*", (req, res) => {

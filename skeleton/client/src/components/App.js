@@ -2,7 +2,11 @@ import React, { Component } from "react";
 import NavBar from "./modules/NavBar.js";
 import { Router } from "@reach/router";
 import NotFound from "./pages/NotFound.js";
-import Skeleton from "./pages/Skeleton.js"
+import Skeleton from "./pages/Skeleton.js";
+import Collection from "./pages/Collection";
+import Theme from "./pages/Theme";
+import { navigate } from "@reach/router";
+
 
 
 import "../utilities.css";
@@ -22,6 +26,7 @@ class App extends Component {
     super(props);
     this.state = {
       userId: undefined,
+      themeId: undefined,
     };
   }
 
@@ -46,7 +51,19 @@ class App extends Component {
   handleLogout = () => {
     this.setState({ userId: undefined });
     post("/api/logout");
+    navigate("/")
   };
+
+  // handleTheme= () => {
+  //   get("/api/whattheme").then((theme) => {
+  //    this.setState({themeId: theme._id});
+  //   })
+  // }
+
+   handleTheme= (themeId) => {
+      this.setState({themeId: themeId});
+      //navigate(`/theme/${themeId}`);
+   }
 
   render() {
     return (
@@ -59,7 +76,10 @@ class App extends Component {
         <div className="App-container">
           <Router>
             <Skeleton path="/"/>
-            <Collection path="/Collection" userId={this.state.userId} />
+            <Collection path={`/Collection/${this.state.userId}`} userId={this.state.userId} handleTheme = {this.handleTheme} />
+            {/* <Theme path ="/theme/5e222ba2c4905203f1af6b0c"/> */}
+            {/* <Theme path ={`/theme/${this.state.themeId}`}/> */}
+            <Theme path="/theme/:themeId" themeId={this.state.themeId}/>
             <NotFound default />
           </Router>
         </div>

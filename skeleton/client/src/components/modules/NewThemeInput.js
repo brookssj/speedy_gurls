@@ -10,7 +10,7 @@ import { post } from "../../utilities";
  * @param {string} defaultText is the placeholder text
  * @param {({storyId, value}) => void} onSubmit: (function) triggered when this post is submitted, takes {storyId, value} as parameters
  */
-class NewPostInput extends Component {
+class NewThemeInput extends Component {
   constructor(props) {
     super(props);
 
@@ -65,11 +65,12 @@ class NewPostInput extends Component {
  * @param {string} defaultText is the placeholder text
  */
 class NewTheme extends Component {
-  addStory = (value) => {
+  addTheme = (value) => {
     const body = { content: value };
     post("/api/theme", body).then((story) => {
       // display this theme on the screen
       this.props.addNewTheme(story);
+      console.log("posted new theme!")
     });
   };
 

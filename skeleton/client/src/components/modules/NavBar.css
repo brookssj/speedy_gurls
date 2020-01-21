@@ -1,6 +1,6 @@
-.NavBar-container {
+ .NavBar-container {
     padding: var(--s) var(--m);
-    background-color: var(--primary);
+    background-color: rgb(112,218,192);
   }
   
   .NavBar-title {
@@ -29,5 +29,33 @@
   
   .NavBar-link + .NavBar-link {
     margin-left: var(--m);
-  }
+  } 
+
+
+
+/* .NavBar-ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+.NavBar-div
+{
+background-color: rgb(112,218,192);
+height:40px;
+}
+.NavBar-li {
+margin-top:5px;
+margin-left:5px;
+margin-right:5px;
+  float: right;
+  font-family: 'Roboto', sans-serif;
+}
   
+.NavBar-webTitle{
+  font-weight:900; 
+  margin-left:10px;
+  float:left; 
+  color:white; 
+  font-family: 'Roboto', sans-serif;
+} */

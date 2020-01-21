@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import SingleTheme from "../modules/SingleTheme";
 import { NewTheme } from "../modules/NewThemeInput.js";
+import Card from "../modules/Card.js"
 
 import { get } from "../../utilities";
  
-class Feed extends Component {
+class Collection extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -37,12 +38,14 @@ class Feed extends Component {
     const hasThemes = this.state.themes.length !== 0;
     if (hasThemes) {
       themesList = this.state.themes.map((themeObj) => (
-        <SingleTheme
+        <Card
+          key={`Card_${themeObj._id}`}
           _id={themeObj._id}
           creator_name={themeObj.creator_name}
           creator_id={themeObj.creator_id}
           content={themeObj.content}
           userId={this.props.userId}
+          handleTheme = {this.props.handleTheme}
         />
       ));
     } else {
@@ -51,10 +54,10 @@ class Feed extends Component {
     return (
       <>
         {this.props.userId && <NewTheme addNewTheme={this.addNewTheme} />}
-        {themesList}
+        {this.props.userId && themesList}
       </>
     );
   }
 }
 
-export default Feed;
+export default Collection;

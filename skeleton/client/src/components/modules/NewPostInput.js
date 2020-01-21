@@ -56,62 +56,42 @@ class NewPostInput extends Component {
   render() {
     return (
       <div className="u-flex">
-        <input
-          type="text"
-          placeholder={this.props.defaultText}
-          value={this.state.title}
-          onChange={this.ChangeTitle}
-          className="NewPostInput-input"
-        />  
-        <input
-          type="text"
-          placeholder={this.props.defaultText} //change to defaultImage?
-          value={this.state.image}
-          onChange={this.ChangeImage}
-          className="NewPostInput-input"
-        />  
-        <input
-          type="text"
-          placeholder={this.props.defaultText}
-          value={this.state.description}
-          onChange={this.ChangeDescription}
-          className="NewPostInput-input"
-        />
-        <button
-          type="submit"
-          className="NewPostInput-button u-pointer"
-          value="Submit"
-          onClick={this.handleSubmit}
-        >
-          Submit
-        </button>
+          <form>
+            <input
+            type="text"
+            placeholder={this.props.defaultTitleText}
+            value={this.state.title}
+            onChange={this.ChangeTitle}
+            className="NewPostInput-input"
+            /><br></br>
+            {/* <input
+            type="text"
+            placeholder={this.props.defaultText} //change to defaultImage?
+            value={this.state.image}
+            onChange={this.ChangeImage}
+            className="NewPostInput-input"
+            />   */}
+            <input
+            type="text"
+            placeholder={this.props.defaultDescription}
+            value={this.state.description}
+            onChange={this.ChangeDescription}
+            className="NewPostInput-input"
+            />
+            <br></br>
+            <input type="file" name="pic" accept="image/*"/>
+            <br></br>
+            <button
+            type="submit"
+            className="NewPostInput-button u-pointer"
+            value="Submit"
+            onClick={this.handleSubmit}
+            >
+            Submit
+            </button>
+        </form>
       </div>
     );
-  }
-}
-
-/**
- * New Comment is a New Post component for comments
- *
- * Proptypes
- * @param {string} defaultText is the placeholder text
- * @param {string} memoryId to add comment to
- */
-class NewComment extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  addComment = (value) => {
-    const body = { parent: this.props.memoryId, content: value };
-    post("/api/comment", body).then((comment) => {
-      // display this comment on the screen
-      this.props.addNewComment(comment);
-    });
-  };
-
-  render() {
-    return <NewPostInput defaultText="New Comment" onSubmit={this.addComment} />;
   }
 }
 
@@ -134,28 +114,12 @@ class NewMemory extends Component {
     post("/api/memory", body).then((memory) => {
       // display this memory on the screen
       this.props.addNewMemory(memory);
+      console.log("added new memory!")
     });
   };
 
   render() {
     return <NewPostInput defaultTitleText="New Title" defaultDescription="New Memory" onSubmit={this.addMemory} />;
-  }
-}
-
-/**
- * New Message is a New Message component for messages
- *
- * Proptypes
- * @param {UserObject} recipient is the intended recipient
- */
-class NewMessage extends Component {
-  sendMessage = (value) => {
-    const body = { recipient: this.props.recipient, content: value };
-    post("/api/message", body);
-  };
-
-  render() {
-    return <NewPostInput defaultText="New Message" onSubmit={this.sendMessage} />;
   }
 }
 
