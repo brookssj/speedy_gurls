@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import NavBar from "./modules/NavBar.js";
 import { Router } from "@reach/router";
 import NotFound from "./pages/NotFound.js";
-import Skeleton from "./pages/Skeleton.js";
+import Home from "./pages/Home.js";
 import Collection from "./pages/Collection";
 import Theme from "./pages/Theme";
 import { navigate } from "@reach/router";
@@ -68,7 +68,7 @@ class App extends Component {
           />
         <div className="App-container">
           <Router>
-            <Skeleton path="/"/>
+            <Home path="/"/>
             <Collection path={`/Collection/${this.state.userId}`} userId={this.state.userId} handleTheme = {this.handleTheme} />
             <Theme path="/theme/:themeId" themeId={this.state.themeId}/>
             <NotFound default />
