@@ -3,6 +3,7 @@ import { NewTheme } from "../modules/NewThemeInput.js";
 import Card from "../modules/Card.js"
 
 import { get } from "../../utilities";
+import "./Collection.css"
  
 class Collection extends Component {
   constructor(props) {
@@ -52,6 +53,8 @@ class Collection extends Component {
     }
     return (
       <>
+        <h1 className="Collection-h1">your collection</h1>
+        <h2 className="Collection-h2">categorize memories by theme</h2>
         {this.props.userId && <NewTheme addNewTheme={this.addNewTheme} />}
         {this.props.userId && themesList}
       </>

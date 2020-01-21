@@ -4,6 +4,7 @@ import { get } from "../../utilities";
 import { Link } from "@reach/router";
 
 import "./Card.css";
+import "../pages/Collection.css"
 
 /**
  * Card is a component for displaying themes
@@ -33,9 +34,11 @@ class Card extends Component {
   render() {
     return (
       <div className="Card-container">
-        <Link to={`/theme/${this.props._id}`} onClick={() => this.props.handleTheme(this.props._id)}>
+        <ul className="Collection-ul">
+        <Link className="Card-link" to={`/theme/${this.props._id}`} onClick={() => this.props.handleTheme(this.props._id)}>
               {this.props.content}
         </Link>
+        </ul>
 
         {/* <button
             type="button"

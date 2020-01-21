@@ -1,0 +1,42 @@
+.Collection-h1
+{
+margin-top:60px;
+color: rgb(243, 148, 205);
+font-family: 'Roboto', sans-serif;
+font-weight: bold;
+text-align: center;
+}
+.Collection-h2
+{
+font-family: 'Roboto', sans-serif;
+font-weight: lighter;
+text-align: center;
+color: blue;
+}
+.Collection-li
+{
+display: block;
+}
+.Collection-ul
+{
+float: left;
+display:block;
+align-items:center;
+margin-top:30px;
+color:black;
+background-color: gray;
+width:200px;
+height:200px;
+margin-left:20px;
+font-family: 'Roboto', sans-serif;
+}
+.Collection-add
+{
+  height: 25px;
+  width: 25px;
+  background-color: white;
+  border-radius: 50%;
+  margin-left:80px;
+  margin-top: 80px;
+  display: inline-block;
+}
